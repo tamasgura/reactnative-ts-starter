@@ -1,1 +1,1 @@
-export { loadJSONPlaceholderSaga } from './loadJSONPlaceholderSaga'
+export { loadJSONPlaceholderSaga } from './loadJSONPlaceholderSaga';

@@ -1,5 +1,5 @@
-import * as sagas from '../sagas'
+import * as sagas from '../sagas';
 
 export const initSagas = (sagaMiddleware: any) => {
-  Object.values(sagas).forEach(sagaMiddleware.run.bind(sagaMiddleware))
-}
+  Object.values(sagas).forEach(sagaMiddleware.run.bind(sagaMiddleware));
+};

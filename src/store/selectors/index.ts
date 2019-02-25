@@ -1,2 +1,2 @@
-export { counterSelector } from './counterSelector'
-export { JSONPlaceholderSelector } from './JSONPlaceholderSelector'
+export { counterSelector } from './counterSelector';
+export { JSONPlaceholderSelector } from './JSONPlaceholderSelector';

@@ -2,7 +2,7 @@ export const fonts = {
   primary: 'Raleway-Regular',
   primaryMedium: 'Raleway-Medium',
   primaryBold: 'Raleway-Bold',
-}
+};
 
 export const fontSizes = {
   xs: 12,
@@ -11,18 +11,18 @@ export const fontSizes = {
   l: 18,
   xl: 24,
   xxl: 26,
-}
+};
 const baseColors = {
   black: '#000',
   white: '#fff',
   lightGrey: '#cecece',
   grey: '#99948e',
   red: '#dc6666',
-}
+};
 const themeColors = {
   green: '#7dc855',
   darkBlue: '#456',
-}
+};
 export const colors = {
   ...baseColors,
   danger: baseColors.red,
@@ -32,13 +32,13 @@ export const colors = {
   bgExtraLight: baseColors.lightGrey,
   buttonPrimary: themeColors.green,
   borderPrimary: baseColors.grey,
-}
+};
 
 export const spacing = {
   s: 6,
   m: 12,
   l: 18,
-}
+};
 
 /*
 export const shadowBottom = {

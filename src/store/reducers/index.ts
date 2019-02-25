@@ -1,2 +1,2 @@
-export { JSONPlaceholderReducer } from './JSONPlaceholderReducer'
-export { counterReducer } from './counterReducer'
+export { JSONPlaceholderReducer } from './JSONPlaceholderReducer';
+export { counterReducer } from './counterReducer';

@@ -1,33 +1,39 @@
-import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { validate } from 'validate.js'
-import DefaultInput from '../../../components/Inputs/DefaultInput/DefaultInput'
-import DefaultText from '../../../components/Text/DefaultText'
-import { spacing } from '../../../utility/styles'
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { validate } from 'validate.js';
+import DefaultInput from '../../../components/Inputs/DefaultInput/DefaultInput';
+import DefaultText from '../../../components/Text/DefaultText';
+import ErrorsList from './ErrorsList';
 
 interface IProps {
-  style?: {}
+  style?: {};
 }
 
 interface IState {
   controls: {
-    username: string
-    password: string
-  }
-  errors: string[]
+    username: string;
+    password: string;
+  };
+  errors: {
+    username: string[];
+    password: string[];
+  };
 }
 
 class Login extends Component<IProps, IState> {
   constructor(props: IProps) {
-    super(props)
+    super(props);
 
     this.state = {
       controls: {
         username: '',
         password: '',
       },
-      errors: [],
-    }
+      errors: {
+        username: [],
+        password: [],
+      },
+    };
   }
 
   usernameChangeHandler = (text: string) => {
@@ -40,8 +46,8 @@ class Login extends Component<IProps, IState> {
         },
       }),
       () => this.validateInputs()
-    )
-  }
+    );
+  };
 
   passwordChangeHandler = (text: string) => {
     this.setState(
@@ -53,8 +59,8 @@ class Login extends Component<IProps, IState> {
         },
       }),
       () => this.validateInputs()
-    )
-  }
+    );
+  };
 
   validateInputs = () => {
     const constraints = {
@@ -71,19 +77,23 @@ class Login extends Component<IProps, IState> {
           message: 'must be at least 6 characters',
         },
       },
-    }
-    const errors = validate(this.state.controls, constraints) || []
-    this.setState(previousState => ({
-      ...previousState,
-      errors,
-    }))
-  }
+    };
+    const errors = validate(this.state.controls, constraints) || [];
 
-  // errorsList = () => {
-  //   Object.keys(this.state.errors).map(e => (
-  //     <Text key={e[0]} style={styles.errorMessage}>{this.state.errors[e][0]}</Text>
-  //   ));
-  // }
+    console.log('validating', errors);
+    this.setState(
+      previousState => ({
+        ...previousState,
+        errors,
+        controls: {
+          ...previousState.controls,
+        },
+      }),
+      () => {
+        console.log(this.state);
+      }
+    );
+  };
 
   render() {
     return (
@@ -94,7 +104,7 @@ class Login extends Component<IProps, IState> {
           textContentType="username"
           autoComplete="username"
           autoCapitalize="none"
-          onChangeText={this.usernameChangeHandler}
+          onChangeHandler={this.usernameChangeHandler}
         />
         <DefaultInput
           style={styles.input}
@@ -103,28 +113,19 @@ class Login extends Component<IProps, IState> {
           textContentType="password"
           autoComplete="password"
           autoCapitalize="none"
-          onChangeText={this.passwordChangeHandler}
+          onChangeHandler={this.passwordChangeHandler}
         />
         <DefaultText text={this.state.controls.username} />
         <DefaultText text={this.state.controls.password} />
-        {Object.keys(this.state.errors).map((e: any) => (
-          <Text key={e[0]} style={styles.errorMessage}>
-            {this.state.errors[e][0]}
-          </Text>
-        ))}
+        <ErrorsList errors={this.state.errors} />
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {},
   input: {},
-  errorMessage: {
-    color: '#ff0000',
-    fontSize: 20,
-    marginVertical: spacing.m,
-  },
-})
+});
 
-export default Login
+export default Login;

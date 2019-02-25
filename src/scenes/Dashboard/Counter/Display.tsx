@@ -1,9 +1,9 @@
-import React from 'react'
-import DefaultText from '../../../components/Text/DefaultText'
+import React from 'react';
+import DefaultText from '../../../components/Text/DefaultText';
 
 interface IProps {
-  value: number
+  value: number;
 }
-const Display = (props: IProps) => <DefaultText {...props} text={`Counter: ${props.value}`} />
+const Display = (props: IProps) => <DefaultText {...props} text={`Counter: ${props.value}`} />;
 
-export default Display
+export default Display;

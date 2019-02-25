@@ -1,22 +1,24 @@
-import { take, put, apply, call } from 'redux-saga/effects'
+import { take, put, apply, call } from 'redux-saga/effects';
+// tslint:disable:no-console TODO
 
-import { LOAD_JSON_PLACEHOLDER, setJSONPlaceholder } from '../actions'
+import { LOAD_JSON_PLACEHOLDER, setJSONPlaceholder } from '../actions';
+
 export function* loadJSONPlaceholderSaga() {
   while (true) {
-    yield take(LOAD_JSON_PLACEHOLDER)
-    /* eslint-disable-next-line no-undef */
-    const response = yield call(fetch, 'https://jsonplaceholder.typicode.com/todos/1')
-    if (Object.prototype.hasOwnProperty.call(response, 'error')) {
+    yield take(LOAD_JSON_PLACEHOLDER);
+
+    const response = yield call(fetch, 'https://jsonplaceholder.typicode.com/todos/1');
+
+    if (response.hasOwnProperty('error')) {
       // errorHandler(response.error)
-      // tslint:disable:no-console TODO
-      console.log(response.error, response)
+      console.log(response.error, response);
     }
     if (response.status !== 200) {
       // return errorHandler(response)
-      console.log('an error occurred. no error prop', response)
+      console.log('an error occurred. no error prop', response);
     }
-    const data = yield apply(response, response.json, [])
+    const data = yield apply(response, response.json, []);
 
-    yield put(setJSONPlaceholder(data.title))
+    yield put(setJSONPlaceholder(data.title));
   }
 }

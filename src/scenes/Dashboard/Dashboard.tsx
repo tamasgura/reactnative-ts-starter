@@ -1,82 +1,36 @@
-import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import DefaultIcon from '../../components/Icons/DefaultIcon';
+import DefaultText from '../../components/Text/DefaultText';
+import Counter from './Counter/Counter';
+import DemoI18N from './DemoI18N/DemoI18N';
+import Login from './Login/Login';
 
-import { whyDidYouUpdate } from 'why-did-you-update'
-import DefaultButton from '../../components/Touchables/DefaultButton'
+class Dashboard extends Component {
+  constructor(props: {}) {
+    super(props);
 
-import DefaultText from '../../components/Text/DefaultText'
-import { navigate } from '../../navigation/services'
-import { loadJSONPlaceholder } from '../../store/actions'
-import Login from './Login/Login'
-import { JSONPlaceholderSelector } from '../../store/selectors'
-import Counter from './Counter/Counter'
-
-if (__DEV__) {
-  whyDidYouUpdate(React, { exclude: /^YellowBox/ })
-}
-
-interface IProps {
-  style: {}
-  friends: {}
-  JSONPlaceholder: string
-  onLoadJSONPlaceholder: () => any
-}
-interface IState {
-  controls: {
-    username: { value: string }
-    password: { value: string }
-  }
-}
-
-class Dashboard extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props)
-    this.state = {
-      controls: {
-        username: { value: '' },
-        password: { value: '' },
-      },
-    }
-  }
-
-  nav = {
-    about: () => navigate('About'),
+    this.state = {};
   }
 
   render() {
     return (
-      <View {...this.props} style={[styles.container, this.props.style]}>
+      <View style={styles.container}>
         <DefaultText text="Dashboard" />
-        <DefaultButton text="navigate to About" onPress={this.nav.about} />
-        {/* <BasicIcon name='ios-at' /> */}
+        <DefaultIcon name="ios-at" />
         <Counter />
+        <DemoI18N />
         <Login />
-        <DefaultButton text="load json" onPress={this.props.onLoadJSONPlaceholder} />
-        <DefaultText text={this.props.JSONPlaceholder} />
-        {/* <DemoI18N /> */}
       </View>
-    )
+    );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {},
-  // input: {backgroundColor: 'white', borderWidth: 1, marginVertical: spacing.m},
-})
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
-const mapStateToProps = (state: IState) => {
-  const JSONPlaceholder = JSONPlaceholderSelector(state)
-  return {
-    JSONPlaceholder,
-  }
-}
-
-const mapDispatchToProps = (dispatch: any) => ({
-  onLoadJSONPlaceholder: () => dispatch(loadJSONPlaceholder()),
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dashboard)
+export default Dashboard;

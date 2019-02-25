@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import { StyleSheet, View } from 'react-native'
-import { colors } from '../../utility/styles'
+import React, { Component } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { colors } from '../../utility/styles';
 
 interface IProps {
-  style: {}
+  style: {};
 }
 
 class DefaultCard extends Component<IProps> {
   constructor(props: IProps) {
-    super(props)
+    super(props);
   }
   render() {
-    return <View style={[styles.container, this.props.style]}>{this.props.children}</View>
+    return <View style={[styles.container, this.props.style]}>{this.props.children}</View>;
   }
 }
 
@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 12,
   },
-})
+});
 
-export default DefaultCard
+export default DefaultCard;

@@ -9,7 +9,8 @@
     ],
     "linterOptions": {
         "exclude": [
-            "src/store/**/*"
+            "src/store/**/*",
+            "__tests__/**/*"
         ]
     },
     "jsRules": {},
@@ -53,7 +54,6 @@
             true,
             "allow-null-check"
         ],
-        "semicolon": [true, "never", "ignore-interfaces"],
         "variable-name": [true, "allow-pascal-case"]
     }
 }

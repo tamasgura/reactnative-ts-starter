@@ -1,20 +1,20 @@
-import { isEqual } from 'lodash'
-import React from 'react'
-import { StyleSheet, Text } from 'react-native'
-import { colors, fonts, fontSizes } from '../../utility/styles'
+import { isEqual } from 'lodash';
+import React from 'react';
+import { StyleSheet, Text } from 'react-native';
+import { colors, fonts, fontSizes } from '../../utility/styles';
 
 interface IProps {
-  style?: {}
-  text?: string
+  style?: {};
+  text?: string;
 }
 
 class DefaultText extends React.Component<IProps> {
   constructor(props: IProps) {
-    super(props)
+    super(props);
   }
 
   shouldComponentUpdate(nextProps: IProps) {
-    return !isEqual(this.props, nextProps)
+    return !isEqual(this.props, nextProps);
   }
 
   render() {
@@ -22,7 +22,7 @@ class DefaultText extends React.Component<IProps> {
       <Text style={[styles.text, this.props.style]} {...this.props}>
         {this.props.text}
       </Text>
-    )
+    );
   }
 }
 
@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary,
     fontSize: fontSizes.m,
   },
-})
+});
 
-export default DefaultText
+export default DefaultText;

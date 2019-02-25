@@ -1,39 +1,28 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import RootStack from './src/navigation/navigators/RootStack'
-import { setNavigator } from './src/navigation/services'
-import store from './src/store/utility/configureStore'
+import React from 'react';
+import { Provider } from 'react-redux';
+import DismissKeyboardView from './src/components/Inputs/DismissKeyboardView';
+// import { whyDidYouUpdate } from 'why-did-you-update';
+
+import { setNavigator } from './src/navigation/services';
+import store from './src/store/utility/configureStore';
+import RootStack from './src/navigation/navigators/RootStack';
 
 class App extends React.Component {
+  // componentDidMount(): void {
+  //   if (__DEV__) {
+  //     whyDidYouUpdate(React, { exclude: /^YellowBox/ });
+  //   }
+  // }
+
   render() {
     return (
-      <Provider store={store}>
-        <RootStack ref={navigatorRef => setNavigator('rootNavigator', navigatorRef)} />
-      </Provider>
-    )
+      <DismissKeyboardView>
+        <Provider store={store}>
+          <RootStack ref={navigatorRef => setNavigator('rootNavigator', navigatorRef)} />
+        </Provider>
+      </DismissKeyboardView>
+    );
   }
 }
 
-export default App
-
-/**
- * PROJECT SETUP
- *
- * BASIC    TODO DONE
- * ESLINT   TODO DONE
- * FLOW/TS? TODO DONE
- * FONTS    TODO DONE
- * ICONS    TODO DONE
- * NAV      TODO DONE
- * REDUX    TODO DONE
- * SAGA     TODO DONE
- * RESELECT TODO DONE
- * IMMUTBLE TODO DONE
- * I18N     TODO DONE
- * VALIDATR TODO DONE
- * REFETCH  ---------
- * COMMON   TODO
- * STYLES?  TODO
- * STORAGE  TODO ?
- *
- */
+export default App;

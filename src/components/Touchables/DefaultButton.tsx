@@ -1,47 +1,56 @@
-import React from 'react'
-import { Platform, StyleSheet, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native'
-import { colors } from '../../utility/styles'
-import DefaultText from '../Text/DefaultText'
+import React from 'react';
+import { StyleSheet, TouchableNativeFeedback, View } from 'react-native';
+
+import { colors, spacing } from '../../utility/styles';
+
+import DefaultText from '../Text/DefaultText';
 
 interface IProps {
-  size?: 'small' | undefined
-  containerStyle?: {}
-  disabled?: boolean
-  text: string
-  textStyle?: {}
-  onPress?: () => any
+  size?: 'small' | undefined;
+  containerStyle?: {};
+  disabled?: boolean;
+  text: string;
+  textStyle?: {};
+  onPress?: () => any;
 }
 
-const DefaultButton = (props: IProps) => {
-  const width = props.size === 'small' ? 90 : 220
-  const height = props.size === 'small' ? 25 : 40
+class DefaultButton extends React.Component<IProps> {
+  size: {
+    width: number;
+    height: number;
+  };
+  content: JSX.Element;
+  touchableContent: JSX.Element;
+  renderContent: JSX.Element;
 
-  const content = (
-    <View style={[{ width, height }, styles.container, props.containerStyle]}>
-      <DefaultText
-        text={props.text}
-        style={[styles.text, props.textStyle, props.disabled ? styles.disabledText : null]}
-      />
-    </View>
-  )
-
-  if (props.disabled) {
-    return content
-  }
-  if (Platform.OS === 'android') {
-    return (
-      <TouchableNativeFeedback style={{ width, height }} onPress={props.onPress}>
-        {content}
+  constructor(props: IProps) {
+    super(props);
+    this.size = {
+      width: this.props.size === 'small' ? 90 : 220,
+      height: this.props.size === 'small' ? 25 : 40,
+    };
+    this.content = (
+      <View style={[{ ...this.size }, styles.container, this.props.containerStyle]}>
+        <DefaultText
+          text={this.props.text}
+          style={[styles.text, this.props.textStyle, this.props.disabled ? styles.disabledText : null]}
+        />
+      </View>
+    );
+    this.touchableContent = (
+      <TouchableNativeFeedback style={{ ...this.size }} onPress={props.onPress}>
+        {this.content}
       </TouchableNativeFeedback>
-    )
+    );
+    this.renderContent = this.props.disabled ? this.content : this.touchableContent;
   }
-  return (
-    <TouchableOpacity style={{ width, height }} onPress={props.onPress}>
-      {content}
-    </TouchableOpacity>
-  )
+
+  render() {
+    return this.renderContent;
+  }
 }
-export default DefaultButton
+
+export default DefaultButton;
 
 const styles = StyleSheet.create({
   container: {
@@ -49,6 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.buttonPrimary,
     borderRadius: 6,
+    marginVertical: spacing.m,
   },
   button: {
     width: '100%',
@@ -63,4 +73,4 @@ const styles = StyleSheet.create({
   },
   disabledText: {},
   touchable: {},
-})
+});

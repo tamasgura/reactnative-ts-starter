@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
-import { Modal, StyleSheet, View } from 'react-native'
+import React, { Component } from 'react';
+import { Modal, StyleSheet, View } from 'react-native';
 
-import DefaultCard from '../Cards/DefaultCard'
-import DefaultButton from '../Touchables/DefaultButton'
+import DefaultCard from '../Cards/DefaultCard';
+import DefaultButton from '../Touchables/DefaultButton';
 
-import i18n from '../../features/i18n'
-import { colors } from '../../utility/styles'
+import i18n from '../../features/i18n';
+import { colors } from '../../utility/styles';
 
 interface IProps {
-  visible: boolean
-  onRequestClose: () => any
-  cancelHandler: () => any
-  submitHandler: () => any
-  containerStyle: {}
+  visible: boolean;
+  onRequestClose: () => any;
+  cancelHandler: () => any;
+  submitHandler: () => any;
+  containerStyle: {};
 }
 
 class DefaultModal extends Component<IProps> {
   constructor(props: IProps) {
-    super(props)
+    super(props);
 
-    this.state = {}
+    this.state = {};
   }
 
   render() {
@@ -40,7 +40,7 @@ class DefaultModal extends Component<IProps> {
                   containerStyle={styles.cancelButton}
                   text={i18n.t('MainScreen.Dashboard.QuickLinks.modalCancel')}
                   pressHandler={() => {
-                    this.props.cancelHandler()
+                    this.props.cancelHandler();
                   }}
                 />
 
@@ -48,7 +48,7 @@ class DefaultModal extends Component<IProps> {
                   containerStyle={styles.submitButton}
                   text={i18n.t('MainScreen.Dashboard.QuickLinks.modalSubmit')}
                   pressHandler={() => {
-                    this.props.submitHandler()
+                    this.props.submitHandler();
                   }}
                 />
               </View>
@@ -56,11 +56,11 @@ class DefaultModal extends Component<IProps> {
           </View>
         </Modal>
       </View>
-    )
+    );
   }
 }
 
-export default DefaultModal
+export default DefaultModal;
 
 const styles = StyleSheet.create({
   container: {
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
     width: 140,
     backgroundColor: colors.red,
   },
-})
+});

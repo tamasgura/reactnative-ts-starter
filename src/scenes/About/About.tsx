@@ -1,26 +1,25 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
-import DefaultButton from '../../components/Touchables/DefaultButton'
+import React, { Component } from 'react';
+import { Text, TextInput, View } from 'react-native';
 
-import { navigate } from '../../navigation/services'
+import { navigate } from '../../navigation/services';
+
+import DefaultButton from '../../components/Touchables/DefaultButton';
 
 interface IProps {
-  counter: number
+  counter: number;
 }
 
 interface IState {
-  title: string
+  title: string;
 }
 
 class About extends Component<IProps, IState> {
   constructor(props: IProps) {
-    super(props)
+    super(props);
     this.state = {
       title: 'About',
-    }
+    };
   }
-
-  state: IState
 
   render() {
     return (
@@ -28,9 +27,15 @@ class About extends Component<IProps, IState> {
         <Text>{this.state.title}</Text>
         <DefaultButton text="to dashboard" onPress={() => navigate('Dashboard')} />
         <Text>Counter: {this.props.counter}</Text>
+        <TextInput
+          style={{ backgroundColor: 'yellow' }}
+          onChangeText={text => {
+            console.log(text);
+          }}
+        />
       </View>
-    )
+    );
   }
 }
 
-export default About
+export default About;

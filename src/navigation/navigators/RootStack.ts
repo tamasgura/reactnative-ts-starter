@@ -1,6 +1,6 @@
-import { createSwitchNavigator } from 'react-navigation'
-import About from '../../scenes/About/About'
-import Dashboard from '../../scenes/Dashboard/Dashboard'
+import { createSwitchNavigator } from 'react-navigation';
+import About from '../../scenes/About/About';
+import Dashboard from '../../scenes/Dashboard/Dashboard';
 
 const MainNavigator = createSwitchNavigator(
   {
@@ -10,6 +10,6 @@ const MainNavigator = createSwitchNavigator(
   {
     initialRouteName: 'Dashboard',
   }
-)
+);
 
-export default MainNavigator
+export default MainNavigator;
